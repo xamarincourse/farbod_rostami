@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.Pages.flightsList"
+             BackgroundColor="#eaedf2">
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style TargetType="Label"
+           x:Key="title">
+        <Setter Property="TextColor" Value="#eaedf2"/>
+      </Style>
+
+      <Style TargetType="Label"
+             x:Key="Arrived">
+        <Setter Property="TextColor" Value="#0c7c39"/>
+      </Style>
+
+      <Style TargetType="Label"
+             x:Key="Delayed">
+        <Setter Property="TextColor" Value="#ad2c08"/>
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+
+  <ListView x:Name="MyListView"
+            ItemsSource="{Binding Items}"
+            ItemTapped="Handle_ItemTapped"
+            CachingStrategy="RecycleElement">
+
+    <!--Built in Cells-->
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <!--<TextCell Text="{Binding name}" />-->
+        <ViewCell>
+
+          <Frame CornerRadius="5"
+                 Margin="5"
+                 Padding="0"
+                 BorderColor="#fff">
+            <StackLayout BackgroundColor="#fff"
+                         Padding="15">
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="25"/>
+                  <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+
+                  <Frame BackgroundColor="#2b569b"
+                         Padding="5,0,5,0"
+                         CornerRadius="2"
+                         HorizontalOptions="StartAndExpand">
+                    <Label Text="{Binding ariline}"
+                         Grid.Row="0"
+                         Grid.Column="0"
+                         TextColor="#fff"/>
+                  </Frame>
+
+
+                  <Label Text="{Binding Status}"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         HorizontalTextAlignment="End"
+                         TextColor="{Binding s_color}"
+                         />
+
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                  <Grid.RowDefinitions>
+                    <RowDefinition/>
+                  </Grid.RowDefinitions>
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                  </Grid.ColumnDefinitions>
+
+                  <StackLayout Orientation="Vertical"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               HorizontalOptions="Start">
+                    <Label Text="{Binding flightNo}" Style="{StaticResource title}"/>
+                    <Label Text="{Binding city}"/>
+
+                  </StackLayout>
+
+                  <StackLayout Orientation="Vertical"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               HorizontalOptions="Center">
+                    <Label Text="STA" Style="{StaticResource title}" />
+                    <Label Text="{Binding STA}"/>
+
+                  </StackLayout>
+
+                  <StackLayout Orientation="Vertical"
+                               Grid.Row="0"
+                               Grid.Column="2"
+                               HorizontalOptions="Center">
+                    <Label Text="ETA" Style="{StaticResource title}"/>
+                    <Label Text="{Binding ETA}"/>
+
+                  </StackLayout>
+
+                  <StackLayout Orientation="Vertical"
+                               Grid.Row="0"
+                               Grid.Column="3"
+                               HorizontalOptions="End">
+                    <Label Text="Terminal" Style="{StaticResource title}"/>
+                    <Label Text="{Binding terminal}" />
+
+                  </StackLayout>
+
+                </Grid>
+
+              </Grid>
+
+            </StackLayout>
+
+          </Frame>
+
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+
+    <!--Custom View Cells-->
+    <!--
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout>
+            <Label Text="{Binding Text}" 
+                   Style="{DynamicResource ListItemTextStyle}" />
+            <Label Text="{Binding Detail}" 
+                   Style="{DynamicResource ListItemDetailTextStyle}"/>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    -->
+  </ListView>
+</ContentPage>
